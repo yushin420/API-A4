@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+service InventoryService {
+    rpc createBook(Book) returns (Message); // return a string message indicating whether book was successfully added
+    rpc getBook(Book) returns (Book); // return Book to give detail of the specific book
+}
+
+message Book {
+    string isbn = 1;
+    string title = 2;
+    string author = 3;
+    Genre genre = 4;
+    int32 year = 5;
+
+    enum Genre {
+        UNKNOWN = 0; // default value
+        FICTION = 1;
+        SCIENCEFICTION = 2;
+        NONFICTION = 3;
+        MYSTERY = 4;
+    }
+}
+
+message InventoryItem {
+    int32 inventoryNumber = 1;
+    Status status = 2;
+    
+    oneof inventory_oneof {
+        Book book = 3;
+    }
+
+    enum Status {
+        UNKNOWN = 0; // default value
+        AVAILABLE = 1;
+        TAKEN = 2;
+    }
+}
+
+message Message {
+    string message = 1;
+}
