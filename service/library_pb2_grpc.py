@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import library_pb2 as library__pb2
+import service.library_pb2 as library__pb2
 
 
 class InventoryServiceStub(object):
